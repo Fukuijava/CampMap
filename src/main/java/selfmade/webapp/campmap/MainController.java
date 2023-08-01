@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
+@RequestMapping("/campmap")
 public class MainController {
     record CampItem(String id, int number, String name, String ken, String city, String detail) {
     }
@@ -36,7 +37,7 @@ public class MainController {
     @GetMapping("/add")
         String addItem (){
         String id = UUID.randomUUID().toString().substring(0, 8);
-        switch () {
+        switch (1) {
             case 1:
                 int number = 1;
                 String name = "キャンプ場名";
