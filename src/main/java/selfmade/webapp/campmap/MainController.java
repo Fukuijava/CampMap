@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/campmap")
 public class MainController {
     record CampItem(String id, int number, String name, String ken, String city, String detail) {
     }
