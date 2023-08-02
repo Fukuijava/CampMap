@@ -11,7 +11,7 @@
         <div class="selection_form">
             <h2>追加したい都道府県を選択</h2>
 
-            <form method="get" action="/add">
+            <form action="/add" method="get" th:object="${kenForm}}">
                 <select id="select_ken">
                     <option value="選択してください" >都道府県</option>
                     <option value="1">北海道</option>
@@ -25,7 +25,7 @@
                     <option value="9">栃木県</option>
                     <option value="10">群馬県</option>
                     <option value="11">埼玉県</option>
-                    <option value="12">千葉県</option>
+                    <option value="12">千葉 県</option>
                     <option value="13">東京都</option>
                     <option value="14">神奈川県</option>
                     <option value="15">新潟県</option>
@@ -60,9 +60,18 @@
                     <option value="44">大分県</option>
                     <option value="45">宮崎県</option>
                     <option value="46">鹿児島県</option>
-                    <option value="47">沖縄県</option>
+                    <option th:field="47">沖縄県</option>
                 </select>
-                <input type="submit"/>
+
+<!--                <script>-->
+<!--                document.addEventListener('DOMContentLoaded', function(){-->
+<!--                    var elem = document.getElementById('select_ken');-->
+<!--                    var result = elem.value;-->
+<!--                    console.log(result);-->
+<!--                }, false);-->
+<!--                </script>-->
+
+                <input type="submit" />
             </form>
 
             <div class="list">
