@@ -1,3 +1,3 @@
 # CampMap
  URLです。
- http://localhost:8080/list
+ http://localhost:8080/campmap/list
