@@ -11,7 +11,7 @@
 <div class="ken_form">
     <h2>都道府県を選んでください</h2>
 
-    <form th:action="@{/add}" method="post" th:object="${myForm}">
+    <form th:action="@{campmap/add}" method="post" th:object="${myForm}">
         <select th:field="*{selectedValue}">
             <option th:each="option : *{options()}"
                     th:value="${option.key}"

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-//@RequestMapping("/campmap")
+@RequestMapping("/campmap")
 public class MainController {
     record CampItem(String id, int number, String name, String ken, String city, String detail){}
     private List<CampItem> campItems = new ArrayList<>();
@@ -23,7 +23,7 @@ public class MainController {
         return "main";
     }
 
-    @PostMapping("/add")
+    @PostMapping("campmap/add")
     public String submit(MyForm form) {
         String  a = form.getSelectedValue();
         int b =  Integer.parseInt(a);
@@ -39,7 +39,7 @@ public class MainController {
                 campItems.add(item);
             }
         }
-        return "redirect:/list";
+        return "redirect:/campmap/list";
     }
     private String selectKrn(int kenNumber){
         String kenName="";
