@@ -24,7 +24,7 @@
 </div>
 
 <div class="camplist">
-    <h2>キャンプ場一覧</h2>
+    <h2 id="camp_list">キャンプ場一覧</h2>
 
     <table border="1" style="border-collapse:collapse;">
         <thead>
@@ -43,7 +43,7 @@
             <td th:text="${camp.number}"></td>
             <td th:text="${camp.name}"></td>
             <td th:text="${camp.address}"></td>
-            <td th:href="@{http://localhost:8080/detail/}" th:text="${camp.detail}"}></td>
+            <td th:text="${camp.detail}"></td>
         </tr>
         </tbody>
     </table>
