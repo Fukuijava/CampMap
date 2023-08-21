@@ -11,7 +11,7 @@
 <div class="ken_form">
     <h2>都道府県を選んでください</h2>
 
-    <form th:action="@{/add}" method="post" th:object="${myForm}">
+    <form th:action="@{campmap/add}" method="post" th:object="${myForm}">
         <select th:field="*{selectedValue}">
             <option th:each="option : *{options()}"
                     th:value="${option.key}"
@@ -32,8 +32,7 @@
             <th class="hidden">ID</th>
             <th>番号</th>
             <th>キャンプ場名</th>
-            <th>県</th>
-            <th>市</th>
+            <th>住所</th>
             <th>詳細</th>
         </tr>
         </thead>
@@ -43,13 +42,11 @@
             <td class="hidden" th:text="${camp.id}"}></td>
             <td th:text="${camp.number}"></td>
             <td th:text="${camp.name}"></td>
-            <td th:text="${camp.ken}"></td>
-            <td th:text="${camp.city}"></td>
-            <td th:text="${camp.detail}"></td>
+            <td th:text="${camp.address}"></td>
+            <td th:href="@{http://localhost:8080/detail/}" th:text="${camp.detail}"}></td>
         </tr>
         </tbody>
     </table>
 </div>
-
 </body>
 </html>
