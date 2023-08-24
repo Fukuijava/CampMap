@@ -43,8 +43,8 @@ public class ListController {
         for (int i = 1; b >= i; i++) {
             if (i == b) {
                 String number = String.valueOf(b);
-                String name = selectKrn(b) + "キャンプ場";//メソッドを新しく作ってそれを呼び出す予定
-                String address = selectKrn(b);
+                String name = form.selectKrn(b)+"キャンプ場";//メソッドを新しく作ってそれを呼び出す予定
+                String address = form.selectKrn(b);
                 String detail = "詳細へ";//メソッドを新しく作ってそれを呼び出す予定
                 String id = UUID.randomUUID().toString().substring(0, 8);
                 CampItem item = new CampItem(id, number, name, address, detail);
@@ -60,19 +60,4 @@ public class ListController {
         return "redirect:/campmap/list";
     }
 
-    private String selectKrn(int kenNumber) {//一時的な物
-        String kenName = "";
-        switch (kenNumber) {
-            case 1:
-                kenName = "北海道";
-                break;
-            case 2:
-                kenName = "青森県";
-                break;
-            case 3:
-                kenName = "岩手県";
-                break;
-        }
-        return kenName;
-    }
 }
