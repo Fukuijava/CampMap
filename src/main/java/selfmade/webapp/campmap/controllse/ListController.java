@@ -55,8 +55,7 @@ public class ListController {
     }
 
     @GetMapping("/campmap/delete")
-    String delete(@RequestParam("id") String id,
-                  Model model){
+    String delete(@RequestParam("id") String id){
         this.dao.delete(id);
         return "redirect:/campmap/list";
     }
