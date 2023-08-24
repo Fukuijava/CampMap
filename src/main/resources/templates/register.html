@@ -1,0 +1,26 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>キャンプマップ-登録画面</title>
+</head>
+
+<body>
+<h1>登録画面</h1>
+
+<div class="ken_form">
+  <h3>キャンプ場一覧を見たい都道府県を選んでください</h3>
+
+  <form th:action="@{/campmap/add}" method="post" th:object="${myForm}" >
+    <select th:field="*{selectedValue}" onchange="">
+      <option th:each="option : *{options()}"
+              th:value="${option.key}"
+              th:text="${option.value}">
+      </option>
+    </select>
+<!--    <input type="submit" value="登録" onclick="location.href='http://localhost:8080/campmap/list'"/>-->
+    <input type="submit" value="登録"/>
+  </form>
+</div>
+</body>
+</html>

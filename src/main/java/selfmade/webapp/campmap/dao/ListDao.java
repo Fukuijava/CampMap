@@ -1,6 +1,6 @@
-package selfmade.webapp.campmap;
+package selfmade.webapp.campmap.dao;
 
-import selfmade.webapp.campmap.MainController.CampItem;
+import selfmade.webapp.campmap.controllse.ListController.CampItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,17 +9,21 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Service;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.*;
 import java.lang.*;
 
 //import static org.springframework.http.HttpHeaders.FROM;
 
 @Service
-public class MainDao {
+public class ListDao {
+    private final static String TABLE_NAME = "tasklist";
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    MainDao(JdbcTemplate jdbcTemplate) {//フィールド地の初期化
+    ListDao(JdbcTemplate jdbcTemplate) {//フィールド地の初期化
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -40,12 +44,12 @@ public class MainDao {
                         (String)row.get("address"),
                         (String)row.get("detail")))
                 .toList();
-
         return campItems;
     }
     public int delete(String id){
         int number = jdbcTemplate.update("DELETE FROM camplist WHERE id = ?",id);
         return number;
+
     }
 
     public int update(CampItem campItem){

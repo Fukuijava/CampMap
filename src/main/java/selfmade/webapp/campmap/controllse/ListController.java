@@ -1,4 +1,4 @@
-package selfmade.webapp.campmap;
+package selfmade.webapp.campmap.controllse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,6 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import selfmade.webapp.campmap.dao.ListDao;
+import selfmade.webapp.campmap.MyForm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +16,15 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/campmap")
-public class MainController {
-    record CampItem(String id, String number, String name, String address, String detail) {
+public class ListController {
+    public record CampItem(String id, String number, String name, String address, String detail) {
     }
 
     private List<CampItem> campItems = new ArrayList<>();
-    private MainDao dao;
+    private ListDao dao;
 
     @Autowired
-    MainController(MainDao dao) {
+    ListController(ListDao dao) {
         this.dao = dao;
     }
 
@@ -30,10 +33,10 @@ public class MainController {
         model.addAttribute(new MyForm());
         List<CampItem> campItems = dao.findAll();
         model.addAttribute("campList", campItems);
-        return "main";
+        return "list";
     }
 
-    @PostMapping("/campmap/add")
+    @PostMapping("/campmap/update")
     public String submit(MyForm form) {
         String a = form.getSelectedValue();
         int b = Integer.parseInt(a);
@@ -48,6 +51,13 @@ public class MainController {
                 dao.add(item);
             }
         }
+        return "redirect:/campmap/list";
+    }
+
+    @GetMapping("/campmap/delete")
+    String delete(@RequestParam("id") String id,
+                  Model model){
+        this.dao.delete(id);
         return "redirect:/campmap/list";
     }
 

@@ -2,17 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>キャンプマップ</title>
+    <title>キャンプマップ-一覧</title>
 </head>
 
 <body>
-<h1>一覧表示</h1>
+<h1>一覧画面</h1>
 
 <div class="ken_form">
-    <h2>都道府県を選んでください</h2>
+    <h3>キャンプ場一覧を選択した都道府県のキャンプ場に更新します。</h3>
 
-    <form th:action="@{campmap/add}" method="post" th:object="${myForm}">
-        <select th:field="*{selectedValue}">
+    <form th:action="@{campmap/update}" method="post" th:object="${myForm}">
+        <select th:field="*{selectedValue}" onchange="">
             <option th:each="option : *{options()}"
                     th:value="${option.key}"
                     th:text="${option.value}">
@@ -26,7 +26,7 @@
 <div class="camplist">
     <h2 id="camp_list">キャンプ場一覧</h2>
 
-    <table border="1" style="border-collapse:collapse;">
+    <table>
         <thead>
         <tr>
             <th class="hidden">ID</th>
@@ -34,6 +34,7 @@
             <th>キャンプ場名</th>
             <th>住所</th>
             <th>詳細</th>
+            <th>削除</th>
         </tr>
         </thead>
 
@@ -44,7 +45,13 @@
             <td th:text="${camp.name}"></td>
             <td th:text="${camp.address}"></td>
 <!--            <td th:text="${camp.detail}"></td>-->
-            <td><a href="campmap/detail">詳細へ</a></td>
+            <td><a href="/campmap/detail">詳細へ</a></td>
+            <td>
+                <form th:action="@{campmap/delete}">
+                    <button type="submit">削除</button>
+                    <input type="hidden" name="id" th:value="${camp.id}" />
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

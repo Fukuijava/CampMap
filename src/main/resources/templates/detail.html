@@ -2,15 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>詳細画面</title>
+    <title>キャンプマップ-詳細</title>
 </head>
 
 <body>
 <h1>詳細画面</h1>
 
-<div class="detai_llist">
+<div class="detail_list">
 
-    <table border="1" style="border-collapse:collapse;">
+    <table>
         <thead>
         <tr>
             <th class="hidden">ID</th>
@@ -21,15 +21,15 @@
         </tr>
         </thead>
 
-<!--        <tbody>-->
-<!--        <tr th:each="detail : ${detailList}"}>-->
-<!--            <td class="hidden" th:text="${detail.id}"}></td>-->
-<!--            <td th:text="${detail.name}"></td>-->
-<!--            <td th:text="${detail.address}"></td>-->
-<!--            <td th:text="${detail.telephone}"></td>-->
-<!--            <td th:text="${detail.url}"></td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
+        <tbody>
+        <tr th:each="detail : ${detailList}"}>
+            <td class="hidden" th:text="${detail.id}"}></td>
+            <td th:text="${detail.name}"></td>
+            <td th:text="${detail.address}"></td>
+            <td th:text="${detail.telephone}"></td>
+            <td th:text="${detail.url}"></td>
+        </tr>
+        </tbody>
     </table>
 
 </div>

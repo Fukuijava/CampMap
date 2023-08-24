@@ -5,3 +5,10 @@ CREATE TABLE IF NOT EXISTS camplist (
   address varchar(16),
   detail varchar(255)
 );
+
+CREATE TABLE IF NOT EXISTS detaillist (
+  id varchar(8) primary key,
+
+  telephone varchar(16),
+  camp_url varchar(255)
+);
