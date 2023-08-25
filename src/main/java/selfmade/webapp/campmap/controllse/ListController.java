@@ -37,18 +37,19 @@ public class ListController {
     }
 
     @PostMapping("/campmap/update")
-    public String submit(MyForm form) {
+    public String submit(MyForm form,
+                         Model model) {
         String a = form.getSelectedValue();
         int b = Integer.parseInt(a);
         for (int i = 1; b >= i; i++) {
             if (i == b) {
                 String number = String.valueOf(b);
-                String name = form.selectKrn(b)+"キャンプ場";//メソッドを新しく作ってそれを呼び出す予定
+                String name = form.selectKrn(b) + "キャンプ場";//メソッドを新しく作ってそれを呼び出す予定
                 String address = form.selectKrn(b);
                 String detail = "詳細へ";//メソッドを新しく作ってそれを呼び出す予定
                 String id = UUID.randomUUID().toString().substring(0, 8);
-                CampItem item = new CampItem(id, number, name, address, detail);
-                dao.add(item);
+                ListController.CampItem item = new ListController.CampItem(id, number, name, address, detail);
+                dao.update(item);
             }
         }
         return "redirect:/campmap/list";
@@ -59,5 +60,4 @@ public class ListController {
         this.dao.delete(id);
         return "redirect:/campmap/list";
     }
-
 }
