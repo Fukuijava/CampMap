@@ -15,20 +15,19 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/campmap")
 public class ListController {
-    public record CampItem(String id, String number, String name, String address, String detail) {
+    public record CampItem(
+            String id, String number, String name, String address, String telephone, String camp_site) {
     }
 
     private List<CampItem> campItems = new ArrayList<>();
     private ListDao dao;
-
     @Autowired
     ListController(ListDao dao) {
         this.dao = dao;
     }
 
-    @GetMapping("/list")
+    @GetMapping("/campmap/list")
     public String init(Model model) {
         model.addAttribute(new MyForm());
         List<CampItem> campItems = dao.findAll();
@@ -46,9 +45,10 @@ public class ListController {
                 String number = String.valueOf(b);
                 String name = form.selectKrn(b) + "キャンプ場";//メソッドを新しく作ってそれを呼び出す予定
                 String address = form.selectKrn(b);
-                String detail = "詳細へ";//メソッドを新しく作ってそれを呼び出す予定
+                String telephone = "000-0000-0000";
+                String camp_site = "http://~~~";
                 String id = UUID.randomUUID().toString().substring(0, 8);
-                ListController.CampItem item = new ListController.CampItem(id, number, name, address, detail);
+                ListController.CampItem item = new ListController.CampItem(id, number, name, address, telephone, camp_site);
                 dao.update(item);
             }
         }
@@ -59,5 +59,12 @@ public class ListController {
     String delete(@RequestParam("id") String id){
         this.dao.delete(id);
         return "redirect:/campmap/list";
+    }
+
+    @GetMapping("/campmap/detail")
+    public String detail(Model model) {
+        List<CampItem> campItems = this.dao.detail();
+        model.addAttribute("campList", campItems);
+        return "detail";
     }
 }

@@ -39,25 +39,24 @@ public class ListDao {
                         (String) row.get("number"),
                         (String) row.get("name"),
                         (String) row.get("address"),
-                        (String) row.get("detail")))
-                .toList();
+                        (String) row.get("telephone"),
+                        (String) row.get("camp_site")
+                )).toList();
         return campItems;
     }
 
     public int delete(String id) {
         int number = jdbcTemplate.update("DELETE FROM camplist WHERE id = ?", id);
         return number;
-
     }
 
     public int update(CampItem campItem) {
         int num = jdbcTemplate.update("DELETE FROM camplist");
 //        number1 = jdbcTemplate.update(
-//                "UPDATE camplist SET number = ?, name = ?, address = ?, detail = ? WHERE id = ?",
+//                "UPDATE camplist SET number = ?, name = ?, address = ? WHERE id = ?",
 //                campItem.number(),
 //                campItem.name(),
 //                campItem.address(),
-//                campItem.detail(),
 //                campItem.id());
 //        return number1;
         SqlParameterSource param = new BeanPropertySqlParameterSource(campItem);
@@ -75,7 +74,6 @@ public class ListDao {
 //                        (String) row.get("number"),
 //                        (String) row.get("name"),
 //                        (String) row.get("address"),
-//                        (String) row.get("detail")))
 //                .toList();
 //        return campItems;
 //    }
@@ -89,8 +87,22 @@ public class ListDao {
 //                        (String) row.get("number"),
 //                        (String) row.get("name"),
 //                        (String) row.get("address"),
-//                        (String) row.get("detail")))
 //                .toList();
 //        return campItems;
 //    }
+
+    public List<CampItem> detail() {//現在登録されているすべての情報を取得してListオブジェクトに格納して返す
+        String query = "SELECT * FROM camplist";
+        List<Map<String, Object>> result = jdbcTemplate.queryForList(query);
+        List<CampItem> campItems = result.stream()
+                .map((Map<String, Object> row) -> new CampItem(
+                        (String) row.get("id"),
+                        (String) row.get("number"),
+                        (String) row.get("name"),
+                        (String) row.get("address"),
+                        (String) row.get("telephone"),
+                        (String) row.get("camp_site")
+                )).toList();
+        return campItems;
+    }
 }

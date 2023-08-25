@@ -11,7 +11,7 @@
 <div class="ken_form">
     <h3>キャンプ場一覧を選択した都道府県のキャンプ場に更新します。</h3>
 
-    <form th:action="@{campmap/update}" method="post" th:object="${myForm}">
+    <form th:action="@{/campmap/update}" method="post" th:object="${myForm}">
         <select th:field="*{selectedValue}" onchange="">
             <option th:each="option : *{options()}"
                     th:value="${option.key}"
@@ -44,10 +44,9 @@
             <td th:text="${camp.number}"></td>
             <td th:text="${camp.name}"></td>
             <td th:text="${camp.address}"></td>
-<!--            <td th:text="${camp.detail}"></td>-->
             <td><a href="/campmap/detail">詳細へ</a></td>
             <td>
-                <form th:action="@{campmap/delete}">
+                <form th:action="@{/campmap/delete}">
                     <button type="submit">削除</button>
                     <input type="hidden" name="id" th:value="${camp.id}" />
                 </form>

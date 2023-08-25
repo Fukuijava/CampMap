@@ -34,9 +34,10 @@ public class RegisterController {
                 String number = String.valueOf(b);
                 String name = form.selectKrn(b) + "キャンプ場";//メソッドを新しく作ってそれを呼び出す予定
                 String address = form.selectKrn(b);
-                String detail = "詳細へ";//メソッドを新しく作ってそれを呼び出す予定
+                String telephone = "000-0000-0000";
+                String camp_site = "http://~~~";
                 String id = UUID.randomUUID().toString().substring(0, 8);
-                ListController.CampItem item = new ListController.CampItem(id, number, name, address, detail);
+                ListController.CampItem item = new ListController.CampItem(id, number, name, address, telephone, camp_site);
                 dao.add(item);
             }
         }

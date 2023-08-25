@@ -17,17 +17,17 @@
             <th>キャンプ場名</th>
             <th>住所</th>
             <th>電話番号</th>
-            <th>サイトのURL</th>
+            <th>公式サイトのURL</th>
         </tr>
         </thead>
 
         <tbody>
-        <tr th:each="detail : ${detailList}"}>
-            <td class="hidden" th:text="${detail.id}"}></td>
-            <td th:text="${detail.name}"></td>
-            <td th:text="${detail.address}"></td>
-            <td th:text="${detail.telephone}"></td>
-            <td th:text="${detail.url}"></td>
+        <tr th:each="camp : ${campList}"}>
+            <td class="hidden" th:text="${camp.id}"}></td>
+            <td th:text="${camp.name}"></td>
+            <td th:text="${camp.address}"></td>
+            <td th:text="${camp.telephone}"></td>
+            <td th:text="${camp.camp_site}"></td>
         </tr>
         </tbody>
     </table>
