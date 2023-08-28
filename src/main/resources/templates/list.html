@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
+    <a href="/campmap/register">登録へ</a>
     <title>キャンプマップ-一覧</title>
 </head>
 
 <body>
 <h1>一覧画面</h1>
-
 <div class="ken_form">
     <h3>キャンプ場一覧を選択した都道府県のキャンプ場に更新します。</h3>
 
@@ -44,7 +44,13 @@
             <td th:text="${camp.number}"></td>
             <td th:text="${camp.name}"></td>
             <td th:text="${camp.address}"></td>
-            <td><a href="/campmap/detail">詳細へ</a></td>
+            <td>
+<!--                <a href="/campmap/detail">詳細へ</a>-->
+                <form th:action="@{/campmap/detail/{camp.id}}">
+                    <button type="submit">詳細へ</button>
+                    <input type="hidden" name="id" th:value="${camp.id}" />
+                </form>
+            </td>
             <td>
                 <form th:action="@{/campmap/delete}">
                     <button type="submit">削除</button>

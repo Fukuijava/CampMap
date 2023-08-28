@@ -91,8 +91,8 @@ public class ListDao {
 //        return campItems;
 //    }
 
-    public List<CampItem> detail() {//現在登録されているすべての情報を取得してListオブジェクトに格納して返す
-        String query = "SELECT * FROM camplist";
+    public List<CampItem> detail(String id) {
+        String query = "SELECT * FROM camplist WHERE id ='"+id +"'";
         List<Map<String, Object>> result = jdbcTemplate.queryForList(query);
         List<CampItem> campItems = result.stream()
                 .map((Map<String, Object> row) -> new CampItem(

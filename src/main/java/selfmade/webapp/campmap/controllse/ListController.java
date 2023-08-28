@@ -21,7 +21,7 @@ public class ListController {
     }
 
     private List<CampItem> campItems = new ArrayList<>();
-    private ListDao dao;
+    public ListDao dao;
     @Autowired
     ListController(ListDao dao) {
         this.dao = dao;
@@ -61,10 +61,13 @@ public class ListController {
         return "redirect:/campmap/list";
     }
 
-    @GetMapping("/campmap/detail")
-    public String detail(Model model) {
-        List<CampItem> campItems = this.dao.detail();
-        model.addAttribute("campList", campItems);
-        return "detail";
-    }
+//    @GetMapping("/campmap/detail")
+//    public String detail(@RequestParam("id") String id,
+//                         Model model) {
+//        List<CampItem> campItems = this.dao.detail(id);
+//        model.addAttribute("campList", campItems);
+//        return "detail";
+//    }
+
+
 }
